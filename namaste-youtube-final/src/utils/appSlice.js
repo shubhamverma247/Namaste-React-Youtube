@@ -24,6 +24,9 @@ const appSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    mobileMenuT: (state) => {
+      state.isMobileMenu = !state.isMobileMenu;
+    },
   },
 });
 
@@ -33,5 +36,6 @@ export const {
   mobileMenu,
   selectCategory,
   setIsLoading,
+  mobileMenuT,
 } = appSlice.actions;
 export default appSlice.reducer;

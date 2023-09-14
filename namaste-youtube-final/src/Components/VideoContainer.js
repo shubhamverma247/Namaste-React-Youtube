@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { YOUTUBE_VIDEOS_API, BASE_URL, options } from "../utils/constants";
+import {
+  YOUTUBE_VIDEOS_API,
+  BASE_URL,
+  options,
+  MockData,
+} from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 import { setIsLoading } from "../utils/appSlice";
@@ -13,17 +18,20 @@ const VideoContainer = () => {
   }, [selectedCategory]);
 
   const getVideos = async () => {
-    // const data = await fetch(YOUTUBE_VIDEOS_API);
-    // const json = await data.json();
     dispatch(setIsLoading(true));
-    const dataRapid = await fetch(
-      `${BASE_URL}/search/?q=${selectedCategory}&hl=en&gl=IN`,
-      options
-    );
-    const jsonRapid = await dataRapid.json();
 
-    setVideos(jsonRapid?.contents);
-    console.log(jsonRapid?.contents);
+    const data = await fetch(YOUTUBE_VIDEOS_API);
+    const json = await data.json();
+    setVideos(MockData);
+    // const dataRapid = await fetch(
+    //   `${BASE_URL}/search/?q=${selectedCategory}&hl=en&gl=IN`,
+    //   options
+    // );
+    // const jsonRapid = await dataRapid.json();
+
+    // setVideos(jsonRapid?.contents);
+    // console.log(selectedCategory)
+    // console.log(jsonRapid?.contents);
     dispatch(setIsLoading(false));
   };
 
