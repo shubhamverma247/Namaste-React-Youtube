@@ -1,19 +1,33 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { selectCategory } from "../utils/appSlice";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const LeftNavMenuItem = ({ text, icon, className, name, type }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
   const clickHandler = (name, type) => {
-    switch (type) {
-      case "category":
-        return dispatch(selectCategory(name));
-      case "home":
-        return dispatch(selectCategory(name));
-      case "menu":
-        return false;
-      default:
-        break;
+    if (pageName === "results") {
+      if (type === "category") {
+        dispatch(selectCategory(name));
+        navigate("/");
+      }
+      if (type === "home") {
+        dispatch(selectCategory(name));
+        navigate("/");
+      }
+    } else {
+      switch (type) {
+        case "category":
+          return dispatch(selectCategory(name));
+        case "home":
+          return dispatch(selectCategory(name));
+        case "menu":
+          return false;
+        default:
+          break;
+      }
     }
   };
   return (

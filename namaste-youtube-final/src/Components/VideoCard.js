@@ -13,7 +13,7 @@ const VideoCard = ({ video }) => {
           alt=""
           src={video?.thumbnails[0]?.url}
         />
-        {video?.lengthSeconds && <VideoLength time={video?.lengthSeconds} />}
+        {/* {video?.lengthSeconds && <VideoLength time={video?.lengthSeconds} />} */}
       </div>
       <div className="flex text-white mt-3">
         <div className="flex items-start">

@@ -1744,60 +1744,7 @@ export const MockData = [
       videoId: "cKJmURBBzOw",
     },
   },
-  {
-    type: "video",
-    video: {
-      author: {
-        avatar: [
-          {
-            height: 68,
-            url: "https://yt3.ggpht.com/eDLpYMh0tmeKXQ-Nb0bWqy2xc9ohGRF9yiqOdN5XuqpVvoJraIUGFFwlzh_tsFIEaSox5MvxAg=s88-c-k-c0x00ffffff-no-rj",
-            width: 68,
-          },
-        ],
-        badges: [
-          {
-            text: "Official Artist Channel",
-            type: "OFFICIAL_ARTIST_CHANNEL",
-          },
-        ],
-        canonicalBaseUrl: null,
-        channelId: "UCmkWj7Sft1lt1VHX43BbAfA",
-        title: "Jasleen Royal",
-      },
-      badges: ["4K", "CC"],
-      descriptionSnippet:
-        "Heeriye #JasleenRoyal #ArijitSingh #DulquerSalmaan We re-wrote our forever - HEERIYE - is all yours now! ❤️ Out Now on all ...",
-      isLiveNow: false,
-      lengthSeconds: 199,
-      movingThumbnails: [
-        {
-          height: 180,
-          url: "https://i.ytimg.com/an_webp/RLzC55ai0eo/mqdefault_6s.webp?du=3000&sqp=CJb5jKgG&rs=AOn4CLDB6Nza_s8R_BR2VmWWlUUPZyEiDg",
-          width: 320,
-        },
-      ],
-      publishedTimeText: "1 month ago",
-      stats: {
-        views: 99684900,
-      },
-      thumbnails: [
-        {
-          height: 202,
-          url: "https://i.ytimg.com/vi/RLzC55ai0eo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBuSM6jOWhh7iG070yLQRiOM8Q4Mw",
-          width: 360,
-        },
-        {
-          height: 404,
-          url: "https://i.ytimg.com/vi/RLzC55ai0eo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCq2nyJ3dp1VKL4P2KmQp3CEw7l_w",
-          width: 720,
-        },
-      ],
-      title:
-        "Heeriye (Official Video) Jasleen Royal ft Arijit Singh| Dulquer Salmaan| Aditya Sharma |Taani Tanvir",
-      videoId: "RLzC55ai0eo",
-    },
-  },
+
   {
     type: "video",
     video: {
