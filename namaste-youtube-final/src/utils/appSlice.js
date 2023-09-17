@@ -7,6 +7,7 @@ const appSlice = createSlice({
     isMobileMenu: false,
     selectedCategory: "New",
     isLoading: false,
+    isDark: false,
   },
   reducers: {
     toggleMenu: (state) => {
@@ -27,6 +28,9 @@ const appSlice = createSlice({
     mobileMenuT: (state) => {
       state.isMobileMenu = !state.isMobileMenu;
     },
+    setTheme: (state) => {
+      state.isDark = !state.isDark;
+    },
   },
 });
 
@@ -37,5 +41,6 @@ export const {
   selectCategory,
   setIsLoading,
   mobileMenuT,
+  setTheme,
 } = appSlice.actions;
 export default appSlice.reducer;

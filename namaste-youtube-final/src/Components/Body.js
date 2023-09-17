@@ -6,9 +6,9 @@ import LeftNav from "./LeftNav";
 
 const Body = () => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full" id="innerDiv">
       <Header />
-      <div className="flex flex-row h-[calc(100%-56px)] bg-black">
+      <div className="flex flex-row h-[calc(100%-56px)] bg-white dark:bg-black">
         <LeftNav />
         <>
           <Outlet />

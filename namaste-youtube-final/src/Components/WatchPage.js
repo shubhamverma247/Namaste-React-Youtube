@@ -64,7 +64,7 @@ const WatchPage = () => {
     );
   }
   return (
-    <div className="flex justify-center flex-row h-[calc(100%-56px)] bg-black">
+    <div className="flex justify-center flex-row h-[calc(100%-56px)] bg-white dark:bg-black">
       <div className="w-full max-w-[1400px] flex flex-col lg:flex-row">
         <div className="flex flex-col lg:w-[calc(100%-350px)] xl:w-[calc(100%-400px)] px-4 py-3 lg:py-6 overflow-y-auto">
           <div className="h-[200px] md:h-[400px] lg:h-[400px] xl:h-[550px] ml-[-16px] lg:ml-0 mr-[-16px] lg:mr-0">
@@ -82,7 +82,7 @@ const WatchPage = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen></iframe>
           </div>
-          <div className="text-white font-bold text-sm md:text-xl mt-4 line-clamp-2">
+          <div className="text-black dark:text-white font-bold text-sm md:text-xl mt-4 line-clamp-2">
             {video.video?.title}
           </div>
           <div className="flex justify-between flex-col md:flex-row mt-4">
@@ -97,24 +97,24 @@ const WatchPage = () => {
                 </div>
               </div>
               <div className="flex flex-col ml-3">
-                <div className="text-white text-md font-semibold flex items-center">
+                <div className="text-black dark:text-white text-md font-semibold flex items-center">
                   {video.video?.author?.title}
                   {video.video?.author?.badges[0]?.type ===
                     "VERIFIED_CHANNEL" && (
-                    <BsFillCheckCircleFill className="text-white/[0.5] text-[12px] ml-1" />
+                    <BsFillCheckCircleFill className="text-black/[0.5] dark:text-white/[0.5] text-[12px] ml-1" />
                   )}
                 </div>
-                <div className="text-white/[0.7] text-sm">
+                <div className="text-black dark:text-white/[0.7] text-sm">
                   {video.video?.author?.stats?.subscribersText}
                 </div>
               </div>
             </div>
-            <div className="flex text-white mt-4 md:mt-0">
-              <div className="flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15]">
-                <AiOutlineLike className="text-xl text-white mr-2" />
+            <div className="flex text-black dark:text-white mt-4 md:mt-0">
+              <div className="flex items-center justify-center h-11 px-6 rounded-3xl bg-black/[0.15] dark:bg-white/[0.15]">
+                <AiOutlineLike className="text-xl text-black dark:text-white mr-2" />
                 {`${abbreviateNumber(video.video?.stats?.views, 2)} Likes`}
               </div>
-              <div className="flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15] ml-4">
+              <div className="flex items-center justify-center h-11 px-6 rounded-3xl  bg-black/[0.15] dark:bg-white/[0.15] ml-4">
                 {`${abbreviateNumber(video.video?.stats?.views, 2)} Views`}
               </div>
             </div>
