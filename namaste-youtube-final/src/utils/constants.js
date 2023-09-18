@@ -8,10 +8,12 @@ import { GiDiamondTrophy, GiEclipse } from "react-icons/gi";
 import { RiLightbulbLine, RiFeedbackLine } from "react-icons/ri";
 import { FiSettings, FiHelpCircle } from "react-icons/fi";
 
-const YOUTUBE_API_KEY = "AIzaSyAmwA_vN9ep0hJJ4ndY4rj8Z-CUxvB6ktg";
-export const YOUTUBE_VIDEOS_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
-  YOUTUBE_API_KEY;
+export const GOOGLE_API_KEY_1 = "AIzaSyA-Lc0nK_tM7o6yll9xzS3S3McjxZbdlVU";
+export const REACT_APP_GOOGLE_API_KEY_1 =
+  process.env.REACT_APP_GOOGLE_API_KEY_1;
+export const YOUTUBE_MOST_POPULAR = "https://youtube.googleapis.com/youtube/v3";
+
+export const BASE_URL = "https://youtube.googleapis.com/youtube/v3";
 
 export const YOUTUBE_SEARCH_API =
   "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
@@ -1907,11 +1909,4 @@ export const MockData = [
   },
 ];
 
-export const BASE_URL = "https://youtube138.p.rapidapi.com";
-export const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": process.env.REACT_APP_YOUTUBE_API_KEY || "YOUR_API_KEY",
-    "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
-  },
-};
+//

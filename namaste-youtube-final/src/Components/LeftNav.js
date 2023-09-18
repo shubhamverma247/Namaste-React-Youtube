@@ -9,7 +9,7 @@ const LeftNav = () => {
   const mobileMenu = useSelector((store) => store.app.isMobileMenu);
   const { pathname } = useLocation();
   const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
-  console.log(pageName);
+
   useEffect(() => {}, [selectedCategory]);
   return (
     <div

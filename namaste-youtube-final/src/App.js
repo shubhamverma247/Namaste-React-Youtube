@@ -6,6 +6,7 @@ import store from "./utils/store";
 import MainContainer from "./Components/MainContainer";
 import WatchPage from "./Components/WatchPage";
 import SearchResults from "./Components/SearchResults";
+
 const appRouter = createBrowserRouter([
   {
     path: "/",

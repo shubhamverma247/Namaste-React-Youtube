@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import moment from "moment";
 import { abbreviateNumber } from "js-abbreviation-number";
-import { Link } from "react-router-dom";
-import { BsFillCheckCircleFill } from "react-icons/bs";
-import VideoLength from "../shared/VideoLength";
+import { BASE_URL, GOOGLE_API_KEY_1 } from "../utils/constants";
 
 const VideoCard = ({ video }) => {
+  const [channelURL, setChannelURL] = useState();
+  const {
+    id,
+    snippet: {
+      channelId,
+      channelTitle,
+      title,
+      publishedAt,
+      thumbnails: { medium },
+    },
+    contentDetails,
+    statistics,
+  } = video;
+  useEffect(() => {
+    getChannelIcon();
+  }, []);
+  const getChannelIcon = async () => {
+    const response = await fetch(
+      BASE_URL +
+        `/channels?part=snippet&id=${channelId}&key=${GOOGLE_API_KEY_1}`
+    );
+    const data = await response.json();
+    setChannelURL(data?.items?.[0]?.snippet?.thumbnails?.default?.url);
+  };
+
+  const seconds = moment.duration(contentDetails?.duration).asSeconds();
+  const _duration = moment.utc(seconds * 1000).format("mm:ss");
   return (
     <div className="flex flex-col mb-8 ">
       <div className="relative h-48 md:h-40 md:rounded-xl overflow-hidden">
-        <img
-          className="h-full w-full object-cover"
-          alt=""
-          src={video?.thumbnails[0]?.url}
-        />
-        {/* {video?.lengthSeconds && <VideoLength time={video?.lengthSeconds} />} */}
+        <img className="h-full w-full object-cover" alt="" src={medium.url} />
+        {contentDetails?.duration && (
+          <span className="absolute bottom-2 right-2 bg-black py-1 px-2 text-white text-xs rounded-md">
+            {contentDetails?.duration ? _duration : "00:00"}
+          </span>
+        )}
       </div>
       <div className="flex text-black dark:text-white mt-3">
         <div className="flex items-start">
@@ -21,24 +47,21 @@ const VideoCard = ({ video }) => {
             <img
               className="h-full w-full object-cover"
               alt=""
-              src={video?.author?.avatar[0]?.url}
+              src={channelURL}
             />
           </div>
         </div>
         <div className="flex flex-col ml-3 overflow-hidden">
-          <span className="text-sm font-bold line-clamp-2">{video?.title}</span>
+          <span className="text-sm font-bold line-clamp-2">{title}</span>
           <span className="text-[12px] font-semibold mt-2 text-black/[0.7] dark:text-white/[0.7] flex items-center">
-            {video?.author?.title}
-            {video?.author?.badges[0]?.type === "VERIFIED_CHANNEL" && (
-              <BsFillCheckCircleFill className="text-black/[0.5] dark:text-white/[0.5] text-[12px] ml-1" />
-            )}
+            {channelTitle}
           </span>
           <div className="flex text-[12px] font-semibold text-black/[0.7] dark:text-white/[0.7] truncate overflow-hidden">
-            <span>{`${abbreviateNumber(video?.stats?.views, 2)} views`}</span>
+            <span>{`${abbreviateNumber(statistics?.viewCount, 2)} views`}</span>
             <span className="flex text-[24px] leading-none font-bold text-black/[0.7] dark:text-white/[0.7] relative top-[-10px] mx-1">
               .
             </span>
-            <span className="truncate">{video?.publishedTimeText}</span>
+            <span className="truncate">{moment(publishedAt).fromNow()}</span>
           </div>
         </div>
       </div>
