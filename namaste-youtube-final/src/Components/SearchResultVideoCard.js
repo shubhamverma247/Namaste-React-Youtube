@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { abbreviateNumber } from "js-abbreviation-number";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-const SearchResultVideoCard = (video) => {
+import moment from "moment";
+import { BASE_URL, REACT_APP_GOOGLE_API_KEY_1 } from "../utils/constants";
+const SearchResultVideoCard = ({ videoId, video }) => {
+  const [channelURL, setChannelURL] = useState();
+  useEffect(() => {
+    getChannelIcon();
+  }, []);
+  const getChannelIcon = async () => {
+    const response = await fetch(
+      BASE_URL +
+        `/channels?part=snippet&id=${video?.channelId}&key=${REACT_APP_GOOGLE_API_KEY_1}`
+    );
+    const data = await response.json();
+
+    setChannelURL(data?.items?.[0]?.snippet?.thumbnails?.default?.url);
+  };
   return (
-    <Link to={`/watch?v=${video?.video?.videoId}`}>
+    <Link to={`/watch?v=${videoId}`}>
       <div className="flex flex-col md:flex-row mb-8 md:mb-3 lg:hover:bg-black/[0.1] lg:dark:hover:bg-white/[0.1] rounded-xl md:p-4">
         <div className="relative flex shrink-0 h-48 md:h-28 lg:h-40 xl:h-48 w-full md:w-48 lg:w-64 xl:w-80 rounded-xl bg-slate-800 overflow-hidden">
           <img
             alt=""
             className="h-full w-full object-cover"
-            src={video?.video?.thumbnails[0]?.url}
+            src={video?.thumbnails?.medium?.url}
           />
           {/* {video?.lengthSeconds && (
               <VideoLength time={video?.lengthSeconds} />
@@ -18,10 +33,10 @@ const SearchResultVideoCard = (video) => {
         </div>
         <div className="flex flex-col ml-4 md:ml-6 mt-4 md:mt-0 overflow-hidden">
           <span className="text-lg md:text-2xl font-semibold line-clamp-2 text-black dark:text-white">
-            {video?.video?.title}
+            {video?.title}
           </span>
           <span className="empty:hidden text-sm line-clamp-1 md:line-clamp-2 text-black/[0.7] dark:text-white/[0.7] md:pr-24 md:my-4">
-            {video?.video?.descriptionSnippet}
+            {video?.description}
           </span>
           <div className="hidden md:flex items-center">
             <div className="flex items-start mr-3">
@@ -29,28 +44,26 @@ const SearchResultVideoCard = (video) => {
                 <img
                   alt=""
                   className="h-full w-full object-cover"
-                  src={video?.video?.author?.avatar[0]?.url}
+                  src={channelURL}
                 />
               </div>
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-semibold mt-2 text-black/[0.7] dark:text-white/[0.7] flex items-center">
-                {video?.video?.author?.title}
-                {video?.video?.author?.badges[0]?.type ===
+                {video?.channelTitle}
+                {/* {video?.video?.author?.badges[0]?.type ===
                   "VERIFIED_CHANNEL" && (
                   <BsFillCheckCircleFill className="text-black/[0.5] dark:text-white/[0.5] text-[12px] lg:text-[10px] xl:text-[12px] ml-1" />
-                )}
+                )} */}
               </span>
               <div className="flex text-sm font-semibold text-black/[0.7] dark:text-white/[0.7] truncate overflow-hidden">
-                <span>{`${abbreviateNumber(
+                {/* <span>{`${abbreviateNumber(
                   video?.video?.stats?.views,
                   2
-                )} views`}</span>
-                <span className="flex text-[24px] leading-none font-bold text-black/[0.7] dark:text-white/[0.7] relative top-[-10px] mx-1">
-                  .
-                </span>
+                )} views`}</span> */}
+                {/* <span className="flex text-[24px] leading-none font-bold text-black/[0.7] dark:text-white/[0.7] relative top-[-10px] mx-1"></span> */}
                 <span className="truncate">
-                  {video?.video?.publishedTimeText}
+                  {moment(video?.publishedAt).fromNow()}
                 </span>
               </div>
             </div>

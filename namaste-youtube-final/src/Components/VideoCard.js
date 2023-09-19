@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { abbreviateNumber } from "js-abbreviation-number";
-import { BASE_URL, GOOGLE_API_KEY_1 } from "../utils/constants";
+import { BASE_URL, REACT_APP_GOOGLE_API_KEY_1 } from "../utils/constants";
 
 const VideoCard = ({ video }) => {
   const [channelURL, setChannelURL] = useState();
@@ -23,7 +23,7 @@ const VideoCard = ({ video }) => {
   const getChannelIcon = async () => {
     const response = await fetch(
       BASE_URL +
-        `/channels?part=snippet&id=${channelId}&key=${GOOGLE_API_KEY_1}`
+        `/channels?part=snippet&id=${channelId}&key=${REACT_APP_GOOGLE_API_KEY_1}`
     );
     const data = await response.json();
     setChannelURL(data?.items?.[0]?.snippet?.thumbnails?.default?.url);
