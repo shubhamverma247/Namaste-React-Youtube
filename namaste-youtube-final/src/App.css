@@ -74,3 +74,9 @@ code {
     height: 100vh !important;
   }
 }
+
+@layer components {
+  .custom-linear-gradient {
+    @apply bg-gradient-to-r from-[#b3b3af] via-[#b3b3af] to-[#b3b3af];
+  }
+}
