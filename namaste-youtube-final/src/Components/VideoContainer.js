@@ -1,30 +1,17 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { Fragment, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { BASE_URL, REACT_APP_GOOGLE_API_KEY_1 } from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
-import { setIsLoading } from "../utils/appSlice";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import useIntersectionObserver from "../utils/useIntersectionObserver";
 import Shimmer from "./Shimmer";
 
 const VideoContainer = () => {
   const { ref, inView } = useInView();
-  const [videos, setVideos] = useState([]);
-  const dispatch = useDispatch();
   const selectedCategory = useSelector((store) => store.app.selectedCategory);
-  const loading = useSelector((store) => store.app.isLoading);
 
-  // useEffect(() => {
-  //   getVideos();
-  // }, [selectedCategory]);
-
-  const bottomRef = useRef();
-
-  const onScreen = useIntersectionObserver(bottomRef, { threshold: 0.5 });
   const getVideos = async (nextPageToken) => {
-    // dispatch(setIsLoading(true));
     let URL = "";
     if (selectedCategory === "New") {
       URL =
@@ -39,14 +26,10 @@ const VideoContainer = () => {
         `/search?part=snippet&maxResults=12&type=video&q=${selectedCategory}&videoDuration=medium&key=` +
         REACT_APP_GOOGLE_API_KEY_1;
     }
-    setTimeout(async () => {
-      const data = await fetch(URL);
-    }, 50000);
+
     const data = await fetch(URL);
     const json = await data.json();
     return json;
-    // setVideos(json.items);
-    // dispatch(setIsLoading(false));
   };
 
   const {
@@ -113,16 +96,7 @@ const VideoContainer = () => {
                 )
               );
             })}
-          {/* {videos.map((item) => {
-      let videoId =
-        item?.kind === "youtube#video" ? item?.id : item?.id.videoId;
 
-      return (
-        <Link key={videoId} to={"/watch?v=" + videoId}>
-          <VideoCard video={item} />
-        </Link>
-      );
-    })} */}
           {isFetchingNextPage && <Shimmer />}
         </div>
       </div>
