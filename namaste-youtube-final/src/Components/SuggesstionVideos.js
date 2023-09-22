@@ -18,7 +18,7 @@ const SuggesstionVideos = ({ videoTitle }) => {
     dispatch(setIsLoading(true));
     const response = await fetch(
       BASE_URL +
-        `/search?part=snippet&maxResults=50&type=video&q=${searchText}&order=viewCount&videoDuration=medium&key=${REACT_APP_GOOGLE_API_KEY_1}`,
+        `/search?part=snippet&maxResults=12&type=video&q=${searchText}&order=viewCount&videoDuration=medium&key=${REACT_APP_GOOGLE_API_KEY_1}`,
       { header: header }
     );
     const data = await response.json();
