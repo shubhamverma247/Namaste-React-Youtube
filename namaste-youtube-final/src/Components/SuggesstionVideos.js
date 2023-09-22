@@ -1,6 +1,10 @@
 import React from "react";
 
-import { BASE_URL, REACT_APP_GOOGLE_API_KEY_1 } from "../utils/constants";
+import {
+  BASE_URL,
+  REACT_APP_GOOGLE_API_KEY_1,
+  header,
+} from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setIsLoading } from "../utils/appSlice";
 import { Link } from "react-router-dom";
@@ -14,7 +18,8 @@ const SuggesstionVideos = ({ videoTitle }) => {
     dispatch(setIsLoading(true));
     const response = await fetch(
       BASE_URL +
-        `/search?part=snippet&maxResults=50&type=video&q=${searchText}&order=viewCount&videoDuration=medium&key=${REACT_APP_GOOGLE_API_KEY_1}`
+        `/search?part=snippet&maxResults=50&type=video&q=${searchText}&order=viewCount&videoDuration=medium&key=${REACT_APP_GOOGLE_API_KEY_1}`,
+      { header: header }
     );
     const data = await response.json();
 
@@ -36,9 +41,6 @@ const SuggesstionVideos = ({ videoTitle }) => {
             className="h-full w-full object-cover"
             src={video?.snippet?.thumbnails?.medium?.url}
           />
-          {/* {video.video?.lengthSeconds && (
-            <VideoLength time={video.video?.lengthSeconds} />
-          )} */}
         </div>
         <div className="flex flex-col ml-3 overflow-hidden">
           <span className="text-sm lg:text-xs xl:text-sm font-bold line-clamp-2 text-black dark:text-white">
@@ -48,10 +50,6 @@ const SuggesstionVideos = ({ videoTitle }) => {
             {video.snippet?.channelTitle}
           </span>
           <div className="flex text-[12px] lg:text-[10px] xl:text-[12px] font-semibold  text-black/[0.7] dark:text-white/[0.7] truncate overflow-hidden">
-            {/* <span>{`${abbreviateNumber(
-              video.video?.stats?.views,
-              2
-            )} views`}</span> */}
             <span className="flex text-[24px] leading-none font-bold  text-black/[0.7] dark:text-white/[0.7] relative top-[-10px] mx-1">
               .
             </span>

@@ -12,7 +12,7 @@ import { FiBell } from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
 import Loader from "../shared/Loader";
 import { mobileMenuT, setTheme } from "../utils/appSlice";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { YOUTUBE_SEARCH_API, header } from "../utils/constants";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 const Header = () => {
   const dispatch = useDispatch();
@@ -26,33 +26,38 @@ const Header = () => {
   const { pathname } = useLocation();
   const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
 
-  useEffect(() => {
-    //make an api call after every key press
-    //but if the diff btw 2 api call in <200ms
-    //decline the api call
-    const timer = setTimeout(() => {
-      getSearchSuggestions();
-    }, 200);
+  // useEffect(() => {
+  //   //make an api call after every key press
+  //   //but if the diff btw 2 api call in <200ms
+  //   //decline the api call
+  //   const timer = setTimeout(() => {
+  //     getSearchSuggestions();
+  //   }, 200);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [searchQuery]);
 
-  const getSearchSuggestions = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const json = await data.json();
+  // const getSearchSuggestions = async () => {
+  //   const data = await fetch(YOUTUBE_SEARCH_API + searchQuery, {
+  //     method: "GET",
+  //     withCredentials: true,
+  //     crossorigin: true,
+  //     mode: "no-cors",
+  //     body: JSON.stringify(data),
+  //   });
+  //   const json = await data.json();
 
-    setSuggestions(json[1]);
-  };
+  //   setSuggestions(json[1]);
+  // };
 
   const searchQueryHandler = (event) => {
-    console.log("hi");
     if (
       (event?.key === "Enter" || event === "searchButton") &&
       searchQuery?.length > 0
     ) {
-      setShowSuggesstions(false);
+      // setShowSuggesstions(false);
       navigate(`/results?search_query=${searchQuery}`);
     }
   };
@@ -125,9 +130,9 @@ const Header = () => {
             onChange={(e) => {
               setSearchQuery(e.target.value);
             }}
-            onFocus={() => {
-              setShowSuggesstions(true);
-            }}
+            // onFocus={() => {
+
+            // }}
             // onBlur={() => {
             //   setShowSuggesstions(false);
             // }}

@@ -18,6 +18,7 @@ export const BASE_URL = "https://youtube.googleapis.com/youtube/v3";
 export const YOUTUBE_SEARCH_API =
   "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
+export const header = new Headers({ "Access-Control-Allow-Origin": "*" });
 export const categories = [
   { name: "New", icon: <AiFillHome />, type: "home" },
   { name: "Trending", icon: <MdLocalFireDepartment />, type: "category" },

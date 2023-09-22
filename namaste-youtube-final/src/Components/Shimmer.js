@@ -7,7 +7,7 @@ const Shimmer = () => {
         .fill([])
         .map((e, i) => {
           return (
-            <div className="flex flex-col mb-8 ">
+            <div className="flex flex-col mb-8 " key={i}>
               <div className="relative h-48 md:h-40 md:rounded-xl overflow-hidden">
                 <div className="w-full h-48  rounded-xl bg-64 bg-gray-300"></div>
               </div>

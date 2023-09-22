@@ -5,6 +5,7 @@ import {
   BASE_URL,
   MockData,
   REACT_APP_GOOGLE_API_KEY_1,
+  header,
 } from "../utils/constants";
 import SearchResultVideoCard from "./SearchResultVideoCard";
 import { setIsLoading } from "../utils/appSlice";
@@ -26,7 +27,8 @@ const SearchResults = () => {
         `/search?part=snippet&maxResults=50&type=video&q=${searchQuery.get(
           "search_query"
         )}&videoDuration=medium&key=` +
-        REACT_APP_GOOGLE_API_KEY_1
+        REACT_APP_GOOGLE_API_KEY_1,
+      { header: header }
     );
     const data = await response.json();
     setResult(data.items);

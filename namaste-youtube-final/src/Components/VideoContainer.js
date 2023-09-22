@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { BASE_URL, REACT_APP_GOOGLE_API_KEY_1 } from "../utils/constants";
+import {
+  BASE_URL,
+  REACT_APP_GOOGLE_API_KEY_1,
+  header,
+} from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -10,7 +14,6 @@ import Shimmer from "./Shimmer";
 const VideoContainer = () => {
   const { ref, inView } = useInView();
   const selectedCategory = useSelector((store) => store.app.selectedCategory);
-
   const getVideos = async (nextPageToken) => {
     let URL = "";
     if (selectedCategory === "New") {
@@ -27,7 +30,7 @@ const VideoContainer = () => {
         REACT_APP_GOOGLE_API_KEY_1;
     }
 
-    const data = await fetch(URL);
+    const data = await fetch(URL, { header: header });
     const json = await data.json();
     return json;
   };
